@@ -3,7 +3,7 @@ import numpy as np
 import scipy.linalg
 
 FLOAT_TYPE = tf.float32
-EPSILON = 1e-1
+EPSILON = 1e-8
 
 
 def get_eijk():
