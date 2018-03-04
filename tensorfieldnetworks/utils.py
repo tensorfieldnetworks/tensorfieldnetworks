@@ -69,14 +69,12 @@ def rotation_equivariant_nonlinearity(x, nonlin=ssp, biases_initializer=None):
                              initializer=biases_initializer)
 
     if representation_index == 1:
-        return nonlin(x)# + tf.reshape(biases, (1, channels, 1)))
+        return nonlin(x)
     else:
-        #if True:
         norm = norm_with_epsilon(x, axis=-1)
         nonlin_out = nonlin(tf.nn.bias_add(norm, biases))
-        # return tf.multiply(x, tf.expand_dims(nonlin_out, axis=-1))
         factor = tf.divide(nonlin_out, norm)
-        # Expand dims for M index.
+        # Expand dims for representation index.
         return tf.multiply(x, tf.expand_dims(factor, axis=-1))
     
 
